@@ -1,5 +1,3 @@
-import './ImagePopup.css';  //Сделала заранее заготовку в соответствии с рекомендованной структурой
-
 function ImagePopup({ card, isOpen, onClose }) {
     return(
         <div className={`popup popup_type_image ${isOpen && 'popup_opened'}`} onClick={onClose}>

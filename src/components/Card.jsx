@@ -1,5 +1,3 @@
-import './Card.css'; //Сделала заранее заготовку в соответствии с рекомендованной структурой
-
 function Card({ card, onCardClick, onDelete }) {
     return(
         <li className="element">

@@ -1,5 +1,3 @@
-import './PopupWithForm.css';  //Сделала заранее заготовку в соответствии с рекомендованной структурой
-
 function PopupWithForm({ title, name, buttonText, children, isOpen, onClose }) {
     return(
         <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} onClick={onClose} >

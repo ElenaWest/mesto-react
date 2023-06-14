@@ -1,8 +1,8 @@
-import Header from "./Header/Header.jsx";
-import Main from "./Main/Main.jsx";
-import Footer from "./Footer/Footer.jsx";
-import PopupWithForm from "./PopupWithForm/PopupWithForm.jsx";
-import ImagePopup from "./ImagePopup/ImagePopup.jsx";
+import Header from "./Header.jsx";
+import Main from "./Main.jsx";
+import Footer from "./Footer.jsx";
+import PopupWithForm from "./PopupWithForm.jsx";
+import ImagePopup from "./ImagePopup.jsx";
 import { useState } from "react";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isAnimationPopup, setIsAnimationPopup] = useState(false) //Создала стейт, отвечающий за анимацию попапов
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false) //Создала стейт для проверки открытия попапа удаления (не предусмотрено ПР10)
-  const [selectedCard, setselectedCard] = useState([])
+  const [selectedCard, setselectedCard] = useState({})
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);

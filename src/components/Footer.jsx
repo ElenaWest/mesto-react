@@ -1,5 +1,3 @@
-import './Footer.css';  //Сделала заранее заготовку в соответствии с рекомендованной структурой
-
 function Footer() {
     return(
         <footer className="footer page__sizing">

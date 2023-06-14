@@ -1,7 +1,6 @@
-import './Main.css'; //Сделала заранее заготовку в соответствии с рекомендованной структурой
 import { useEffect, useState } from 'react';
-import api from '../../utils/api.js';
-import Card from '../Card/Card.jsx';
+import api from '../utils/api.js';
+import Card from './Card.jsx'
 
 
 function Main({ onEditProfile, onAddPlace , onEditAvatar, onCardClick, onDelete }) {
