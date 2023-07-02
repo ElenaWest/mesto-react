@@ -1,45 +1,38 @@
-import { useEffect, useState } from 'react';
-import api from '../utils/api.js';
+import { useContext } from 'react';
 import Card from './Card.jsx'
+import CurrentUserContext from '../contexts/CurrentUserContext.js';
+import Spinner from './Spinner/Spinner.jsx';
 
 
-function Main({ onEditProfile, onAddPlace , onEditAvatar, onCardClick, onDelete }) {
-    const [userName, setUserName] = useState('')
-    const [userDescription, setUserDescription] = useState('')
-    const [userAvatar, setUserAvatar] = useState('')
-    const [cards, setCards] = useState([])
+function Main({ onEditProfile, onAddPlace , onEditAvatar, onCardClick, onDelete, cards, isLoading }) {
+   // const [userName, setUserName] = useState('')
+   // const [userDescription, setUserDescription] = useState('')
+  //  const [userAvatar, setUserAvatar] = useState('')
+    
 
-    useEffect(() => {
-        Promise.all([api.getInfo(), api.getCards()])
-          .then(([dataUser, dataCard]) => {
-            setUserName(dataUser.name)
-            setUserDescription(dataUser.about)
-            setUserAvatar(dataUser.avatar)
-            dataCard.forEach(data => data.myid = dataUser._id)
-            setCards(dataCard)
-          });
-    }, [])
+const currentUser =  useContext(CurrentUserContext)    
 
     return(
         <main className="main">
             <section className="profile page__sizing">
                 <button className="profile__avatar-overlay" type="button" onClick={onEditAvatar}>
-                    <img className="profile__avatar" src={userAvatar} alt="Аватар" />
+                    <img className="profile__avatar" src={currentUser.avatar ? currentUser.avatar : '#'} alt="Аватар" />
                 </button>
                 <div className="profile__info">
-                    <h1 className="profile__name">{userName}</h1>
-                    <p className="profile__status">{userDescription}</p>
+                    <h1 className="profile__name">{currentUser.name ? currentUser.name : ''}</h1>
+                    <p className="profile__status">{currentUser.about ? currentUser.about : ''}</p>
                     <button className="profile__edit-button" type="button" aria-label="Редактировать" onClick={onEditProfile} />
                 </div>
                 <button className="profile__add-button" type="button" aria-label="Добавить" onClick={onAddPlace} />
             </section>
             <section className="elements">
                 <ul className="elements__list page__sizing">
-                    {cards.map(data => {
+                    {isLoading ? <Spinner /> : cards.map(data => {
                         return(
                             <Card key={data._id} card={data} onCardClick={onCardClick} onDelete={onDelete} />
                         )
                     })}
+                    {/*<Spinner /> Для настройки спиннера*/}
                 </ul>
             </section>
         </main>

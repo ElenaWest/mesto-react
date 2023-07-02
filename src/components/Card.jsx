@@ -1,13 +1,16 @@
+import { useContext } from "react";
+import CurrentUserContext from '../contexts/CurrentUserContext.js';
+import LikeButton from "./LikeButton.jsx";
+
 function Card({ card, onCardClick, onDelete }) {
+    const currentUser =  useContext(CurrentUserContext) 
     return(
         <li className="element">
             <img className="element__photo" src={card.link ? card.link : '#'} alt={card.name ? `${card.name}` : '#'} onClick={() => onCardClick({link: card.link, name: card.name})} />
-            {/*{card.myid === card.owner._id && <button className="element__trash" type="button" aria-label="Удалить" onClick={onDelete} />} Отображение только своих корзин*/} 
-            <button className="element__trash" type="button" aria-label="Удалить" onClick={onDelete} />
+            {currentUser._id === card.owner._id && <button className="element__trash" type="button" aria-label="Удалить" onClick={() => onDelete(card._id)} />}
             <div className="element__name-group">
                 <h2 className="element__title">{card.name}</h2>
-                <button className="element__heart" type="button" aria-label="Нравиться" />
-                <p className="element__number">{card.likes.length}</p>
+                <LikeButton likes={card.likes} myid={currentUser._id} cardid={card._id} />
             </div>
         </li>
     );
