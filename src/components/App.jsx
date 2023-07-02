@@ -10,8 +10,6 @@ import EditProfilePopup from "./EditProfilePopup.jsx";
 import EditAvatarPopup from "./EditAvatarPopup.jsx";
 import AddPlacePopup from "./AddPlacePopup.jsx";
 
-// Функцию лайка вынесла в отдельный компонент, чтобы при постановке\снятии лайка страница не рендерилась целиком
-
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
@@ -96,7 +94,6 @@ function App() {
           return card._id !== deleteCardId
         }))
         closeAllPopups()
-        setIsSend(false)
       })
       .catch((error) => console.error(`Ошибка при удалении карточки ${error}`))
       .finally(() => setIsSend(false))
@@ -109,7 +106,6 @@ function App() {
         setCurrentUser(res)
         closeAllPopups()
         reset()
-        setIsSend(false)
       })
       .catch((error) => console.error(`Ошибка при редактировании данных профиля ${error}`))
       .finally(() => setIsSend(false))
@@ -122,7 +118,6 @@ function App() {
         setCurrentUser(res)
         closeAllPopups()
         reset()
-        setIsSend(false)
       })
       .catch((error) => console.error(`Ошибка при редактировании изображения ${error}`))
       .finally(() => setIsSend(false))
@@ -135,7 +130,6 @@ function App() {
         setCards([res, ...cards])
         closeAllPopups()
         reset()
-        setIsSend(false)
       })
       .catch((error) => console.error(`Ошибка при добавлении новой карточки ${error}`))
       .finally(() => setIsSend(false))
